@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Child</title>
+</head>
+<body>
+  <h1>Child</h1>
+  <h3 id='from-parent'></h3>
+
+  <script>
+    window.addEventListener('load', () => {
+      console.log(document.getElementById('from-parent'))
+    })
+    
+    window.addEventListener('message', e => {
+      document.getElementById('from-parent').innerHTML = e.data
+    })
+  </script>
+</body>
+</html>

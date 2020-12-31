@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Parent</title>
+</head>
+<body>
+  <button id="trigger">Load iframe</button>
+  <button id="display-data">Display Data</button>
+
+  <script>
+    let triggerButton = document.getElementById('trigger');
+    let displayButton = document.getElementById('display-data');
+
+    let loadIframe = () => {
+      let iframe = document.createElement("iframe");
+      
+      iframe.src = 'http://127.0.0.1:8081';
+      iframe.frameBorder = "0";
+      iframe.id = "iframe";
+      iframe.style.position = "absolute";
+      iframe.style.zIndex = "999";
+      iframe.style.height = "50%";
+      iframe.style.width = "50%";
+      iframe.style.top = "25%";
+      iframe.style.left = "25%";
+      iframe.style.backgroundColor = "lightgrey";
+      iframe.style.border = "none";
+      
+      document.body.prepend(iframe);
+      document.body.style.overflow = "hidden";
+    }
+
+    let handleDisplayData = () => {
+      iframe.contentWindow.postMessage('Hello World', 'http://127.0.0.1:8081')
+    }
+
+    let groupAction = () => {
+      loadIframe()
+      handleDisplayData()
+    }
+
+    triggerButton.addEventListener('click', loadIframe)
+
+    displayButton.addEventListener('click', groupAction)
+
+  </script>
+</body>
+</html>
